@@ -32,7 +32,7 @@ namespace SimpleUnitOfWork
             _logger.Info($"Predefined: [{schedule}] - {_retrySchedule}");
         }
 
-        public async Task ExecuteAsync(Func<Task> action)
+        public async Task ExecuteAsync(Func<Task> action, IsolationLevel isolationLevel = IsolationLevel.Serializable)
         {
             var policy = GetRetryPolicy();
 
@@ -45,7 +45,8 @@ namespace SimpleUnitOfWork
                     //    · When you have nested connections to the same database.
                     //    · When the ambient transaction is a distributed transaction, and you don’t declare a TransactionScopeOption.RequiresNew.
                     //    · When you invoke another resource manager with a database connection.
-                    using (var transaction = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
+                    var options = new TransactionOptions { IsolationLevel = isolationLevel };
+                    using (var transaction = new TransactionScope(TransactionScopeOption.Required, options, TransactionScopeAsyncFlowOption.Enabled))
                     {
                         await action();
                         transaction.Complete();
