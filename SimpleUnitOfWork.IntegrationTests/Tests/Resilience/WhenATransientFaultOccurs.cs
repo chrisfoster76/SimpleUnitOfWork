@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SimpleUnitOfWork.IntegrationTests.TestHarness;
 
-namespace SimpleUnitOfWork.IntegrationTests.Tests.RetryCapability
+namespace SimpleUnitOfWork.IntegrationTests.Tests.Resilience
 {
     [TestClass]
     public class WhenATransientFaultOccurs

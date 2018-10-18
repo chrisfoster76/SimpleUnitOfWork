@@ -1,9 +1,8 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SimpleUnitOfWork.IntegrationTests.TestHarness;
 
-namespace SimpleUnitOfWork.IntegrationTests.Tests.RetryCapability
+namespace SimpleUnitOfWork.IntegrationTests.Tests.Resilience
 {
     [TestClass]
     public class WhenANonTransientFaultOccurs
@@ -16,8 +15,6 @@ namespace SimpleUnitOfWork.IntegrationTests.Tests.RetryCapability
         public async Task Arrange()
         {
             _testRepository = new TestRepository();
-            //_unitOfWork = new UnitOfWork(new WaitAndRetrySchedule { RetryCount = 10, SleepDurationProvider = i => TimeSpan.FromSeconds(0) });
-
             _unitOfWork = new UnitOfWork(PredefinedWaitAndRetrySchedule.DefaultJob);
 
             await DbHelper.ClearDown();

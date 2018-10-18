@@ -65,11 +65,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="TestHarness\DbHelper.cs" />
-    <Compile Include="Tests\RetryCapability\WhenANonTransientFaultOccurs.cs" />
+    <Compile Include="Tests\Resilience\WhenANonTransientFaultOccurs.cs" />
     <Compile Include="Tests\TestRepository.cs" />
     <Compile Include="Tests\Atomicity\GivenATwoPartTransaction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Tests\RetryCapability\WhenATransientFaultOccurs.cs" />
+    <Compile Include="Tests\Resilience\WhenATransientFaultOccurs.cs" />
     <Compile Include="Tests\TestHelper.cs" />
   </ItemGroup>
   <ItemGroup>
